@@ -1,24 +1,42 @@
-import { compose, createStore, applyMiddleware } from "redux";
-//import logger from "redux-logger";
+// import { compose, createStore, applyMiddleware } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+// import { persistStore, persistReducer } from "redux-persist";
+// import storage from "redux-persist/lib/storage";
+import logger from "redux-logger";
+// import createSagaMiddleware from "@redux-saga/core";
+
+// import { rootSaga } from "./root-saga";
 
 import { rootReducer } from "./root-reducer";
 
-const loggerMiddleware = (store) => (next) => (action) => {
-  if (!action.type) {
-    return next(action);
-  }
+// const persistConfig = {
+//   key: "root",
+//   storage,
+//   whitelist: ["cart"],
+// };
 
-  console.log("type:", action.type);
-  console.log("payload:", action.payload);
-  console.log("currentState:", store.getState());
+// const sagaMiddleware = createSagaMiddleware();
 
-  next(action);
+// const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-  console.log("nextState:", store.getState());
-};
+const middleWares = [process.env.NODE_ENV === "development" && logger].filter(
+  Boolean
+);
 
-const middleWares = [loggerMiddleware];
+// const composedEnhancers = compose(applyMiddleware(...middleWares));
 
-const composedEnhancers = compose(applyMiddleware(...middleWares));
+export const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(middleWares),
+});
 
-export const store = createStore(rootReducer, undefined, composedEnhancers);
+// export const store = createStore(
+//   persistedReducer,
+//   undefined,
+//   composedEnhancers
+// );
+
+// sagaMiddleware.run(rootSaga);
+
+// export const persistor = persistStore(store);
