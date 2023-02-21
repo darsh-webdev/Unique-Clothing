@@ -60,6 +60,10 @@ export const cartSlice = createSlice({
     setIsCartOpen(state, action) {
       state.isCartOpen = action.payload;
     },
+
+    clearCart(state, action) {
+      state.cartItems = [];
+    },
   },
 });
 
@@ -68,6 +72,7 @@ export const {
   removeItemFromCart,
   deleteItemFromCart,
   setIsCartOpen,
+  clearCart,
 } = cartSlice.actions;
 
 export const cartReducer = cartSlice.reducer;

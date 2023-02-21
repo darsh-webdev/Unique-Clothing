@@ -14,7 +14,7 @@ const CartItem = ({ cartItem }) => {
       <ItemDetails>
         <Name>{name}</Name>
         <Price>
-          {quantity} x ${price}
+          {quantity} x ₹{price}
         </Price>
       </ItemDetails>
     </CartItemContainer>

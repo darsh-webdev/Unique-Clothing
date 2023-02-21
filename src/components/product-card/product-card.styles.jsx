@@ -46,19 +46,19 @@ export const Image = styled.img`
 `;
 
 export const Footer = styled.div`
-  width: 100%;
+  width: 90%;
   height: 5%;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   font-size: 18px;
 `;
 export const Name = styled.span`
   width: 90%;
-  margin: 0 10px;
+  margin: 0 5px;
   margin-bottom: 15px;
 `;
 
 export const Price = styled.span`
   width: 10%;
-  margin: 0 10px;
+  margin: 0 25px;
 `;
